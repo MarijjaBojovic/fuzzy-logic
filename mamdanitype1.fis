@@ -1,0 +1,46 @@
+[System]
+Name='mamdanitype1'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='e'
+Range=[-15 15]
+NumMFs=3
+MF1='negativna':'trapmf',[-15 -15 -10 0]
+MF2='nula':'trimf',[-5 0 5]
+MF3='pozitivna':'trapmf',[0 10 15 15]
+
+[Input2]
+Name='delta_e'
+Range=[-0.5 0.5]
+NumMFs=2
+MF1='neg':'trimf',[-0.5 -0.5 0.05]
+MF2='poz':'trimf',[-0.05 0.5 0.5]
+
+[Output1]
+Name='control'
+Range=[-1 1]
+NumMFs=5
+MF1='n_big':'trimf',[-1 -1 0.3]
+MF2='n_small':'trimf',[-1 -0.2 0]
+MF3='zero':'trimf',[-0.1 0 0.1]
+MF4='p_smal':'trimf',[0 0.2 1]
+MF5='p_big':'trimf',[0.3 1 1]
+
+[Rules]
+1 0, 1 (1) : 1
+2 0, 3 (1) : 1
+3 0, 5 (1) : 1
+2 1, 2 (1) : 1
+2 2, 4 (1) : 1
+1 1, 1 (1) : 1
+3 2, 5 (1) : 1
